@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Story</string>
+    <string name="image_splash_screen">image splash screen</string>
+    <string name="all_email">Email</string>
+    <string name="all_password">Password</string>
+    <string name="all_login">LOGIN</string>
+    <string name="all_register">REGISTER</string>
+    <string name="all_image">image</string>
+    <string name="all_email_example">your@email.com</string>
+    <string name="all_name">Name</string>
+    <string name="menu_logout">Logout</string>
+    <string name="add_title">Add Story</string>
+    <string name="camera_capture_image">capture image</string>
+    <string name="camera_flip_camera">flip camera</string>
+    <string name="add_preview_photo">preview photo</string>
+    <string name="add_gallery">Gallery</string>
+    <string name="add_camera">Camera</string>
+    <string name="add_upload">Upload</string>
+    <string name="add_description">Description</string>
+    <string name="add_chose_picture">Choose a Picture</string>
+    <string name="add_insert_image">Please enter an image first.</string>
+    <string name="add_no_permission">Didn\'t get permission.</string>
+    <string name="camera_failed_load_image">Failed to take a picture.</string>
+    <string name="camera_failed_camera">Failed to bring up the camera.</string>
+    <string name="home_not_found">Data Not Found</string>
+    <string name="edit_text_email_invalid">Invalid Email</string>
+    <string name="edit_text_password_alert">Password must be 6 characters</string>
+    <string name="register_example_name">John</string>
+    <string name="all_email_empty">email cannot be empty</string>
+    <string name="all_password_empty">password cannot be empty</string>
+    <string name="all_name_empty">name cannot be empty</string>
+    <string name="add_description_empty">Description cannot be empty</string>
+    <string name="all_icon" translatable="false">icon</string>
+    <string name="photo" translatable="false">detail</string>
+    <string name="all_email_ed" translatable="false">ed email</string>
+    <string name="all_password_ed" translatable="false">ed password</string>
+    <string name="app_widget_description" translatable="false">This is an app widget description</string>
+    <string name="all_no_data">No Data</string>
+    <string name="all_bookmarked">Bookmarked</string>
+    <string name="setting_title">Setting</string>
+    <string name="setting_language">Language</string>
+</resources>

@@ -1,0 +1,32 @@
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.StoryApps.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.StoryApps.AppWidgetContainer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <StackView
+            android:id="@+id/stack_widget"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:loopViews="true" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_widget_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/all_no_data"
+        android:textAlignment="center"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</FrameLayout>

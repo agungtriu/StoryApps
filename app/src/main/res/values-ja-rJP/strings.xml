@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ストーリー</string>
+    <string name="image_splash_screen">画像のスプラッシュ スクリーン</string>
+    <string name="all_password">" パスワード"</string>
+    <string name="all_image">画像</string>
+    <string name="all_name">名前</string>
+    <string name="all_email">Eメール</string>
+    <string name="all_login">ログインする</string>
+    <string name="all_register">登録</string>
+    <string name="menu_logout">ログアウト</string>
+    <string name="add_title">ストーリーを追加</string>
+    <string name="camera_capture_image">キャプチャー画像</string>
+    <string name="camera_flip_camera">カメラスイッチ</string>
+    <string name="add_preview_photo">" 写真のプレビュー"</string>
+    <string name="add_gallery">ギャラリー</string>
+    <string name="add_camera">カメラ</string>
+    <string name="add_upload">アップロード</string>
+    <string name="add_description">説明</string>
+    <string name="add_chose_picture">画像を選択</string>
+    <string name="add_insert_image">最初に画像を挿入します。</string>
+    <string name="add_no_permission">許可を得ていない</string>
+    <string name="camera_failed_load_image">" 写真を撮れませんでした。"</string>
+    <string name="camera_failed_camera">カメラの起動に失敗しました。</string>
+    <string name="home_not_found">" データが見つかりません"</string>
+    <string name="edit_text_email_invalid">パスワードは 6 文字である必要があります</string>
+    <string name="edit_text_password_alert">無効な電子メール</string>
+    <string name="all_email_empty">電子メールを空にすることはできません</string>
+    <string name="all_password_empty">パスワードを空にすることはできません</string>
+    <string name="all_name_empty">名前を空にすることはできません</string>
+    <string name="add_description_empty">説明を空にすることはできません</string>
+    <string name="all_no_data">データなし</string>
+    <string name="all_bookmarked" translatable="false">ブックマーク済み</string>
+    <string name="setting_title">設定</string>
+    <string name="setting_language">" 言語"</string>
+    <string name="register_example_name">ジョン</string>
+    <string name="all_email_example" translatable="false">your@email.com</string>
+</resources>

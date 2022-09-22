@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_all_poster_medium"
+        android:layout_marginStart="@dimen/margin_all_medium"
+        android:layout_marginTop="@dimen/margin_all_xlarge"
+        android:layout_marginEnd="@dimen/margin_all_medium"
+        android:contentDescription="@string/all_image"
+        android:src="@mipmap/ic_dicoding"
+        android:transitionName="@string/all_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_login_title_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/ed_login_email"
+        android:text="@string/all_email"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/iv_login" />
+
+    <com.example.storyapps.ui.customview.EditTextEmail
+        android:id="@+id/ed_login_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_small"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/bg_edittext_rounded"
+        android:hint="@string/all_email_example"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/margin_all_small"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title_email" />
+
+    <TextView
+        android:id="@+id/tv_login_title_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_medium"
+        android:labelFor="@id/ed_login_password"
+        android:text="@string/all_password"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/ed_login_email" />
+
+    <com.example.storyapps.ui.customview.EditTextPassword
+        android:id="@+id/ed_login_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_small"
+        android:autofillHints="password"
+        android:background="@drawable/bg_edittext_rounded"
+        android:hint="@string/all_password"
+        android:inputType="textPassword"
+        android:padding="@dimen/margin_all_small"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title_password" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_large"
+        android:background="@drawable/bg_button"
+        android:text="@string/all_login"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/ed_login_password" />
+
+    <Button
+        android:id="@+id/bt_login_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_medium"
+        android:background="@drawable/bg_button"
+        android:text="@string/all_register"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="@id/iv_login"
+        app:layout_constraintStart_toStartOf="@id/iv_login"
+        app:layout_constraintTop_toBottomOf="@id/bt_login" />
+
+    <ProgressBar
+        android:id="@+id/pb_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

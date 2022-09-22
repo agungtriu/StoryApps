@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Story</string>
+    <string name="image_splash_screen">gambar splash screen</string>
+    <string name="all_password">Kata sandi</string>
+    <string name="all_image">gambar</string>
+    <string name="all_name">Nama</string>
+    <string name="add_title">Tambah Cerita</string>
+    <string name="camera_capture_image">ambil gambar</string>
+    <string name="camera_flip_camera">ganti kamera</string>
+    <string name="add_preview_photo">pratinjau foto</string>
+    <string name="add_gallery">Galeri</string>
+    <string name="add_camera">Kamera</string>
+    <string name="add_upload">Unggah</string>
+    <string name="add_description">Deskripsi</string>
+    <string name="add_chose_picture">Pilih gambar</string>
+    <string name="add_insert_image">" Masukkan gambar terlebih dahulu."</string>
+    <string name="add_no_permission">Tidak mendapatkan permission.</string>
+    <string name="camera_failed_load_image">Gagal mengambil gambar.</string>
+    <string name="home_not_found">Data tidak ditemukan</string>
+    <string name="camera_failed_camera">Gagal memunculkan kamera.</string>
+    <string name="all_email">Email</string>
+    <string name="all_register">DAFTAR</string>
+    <string name="menu_logout">Keluar</string>
+    <string name="all_login">LOGIN</string>
+    <string name="edit_text_email_invalid">Email tidak valid</string>
+    <string name="edit_text_password_alert">Kata sandi harus 6 karakter</string>
+    <string name="all_email_empty">email tidak boleh kosong</string>
+    <string name="all_password_empty">kata sandi tidak boleh kosong</string>
+    <string name="all_name_empty">nama tidak boleh kosong</string>
+    <string name="add_description_empty">Deskripsi tidak boleh kosong</string>
+    <string name="all_no_data">Tidak ada data</string>
+    <string name="all_bookmarked" translatable="false">Ditandai</string>
+    <string name="setting_title">Pengaturan</string>
+    <string name="setting_language">Bahasa</string>
+    <string name="register_example_name">John</string>
+    <string name="all_email_example" translatable="false">your@email.com</string>
+</resources>
