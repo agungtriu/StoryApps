@@ -30,7 +30,9 @@ class EditTextEmail : AppCompatEditText {
             }
 
             override fun onTextChanged(text: CharSequence, p1: Int, p2: Int, p3: Int) {
-                error = if (text.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()) context.getString(R.string.edit_text_email_invalid) else null
+                error = if (text.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(text.toString())
+                        .matches()
+                ) context.getString(R.string.edit_text_email_invalid) else null
             }
 
             override fun afterTextChanged(p0: Editable?) {

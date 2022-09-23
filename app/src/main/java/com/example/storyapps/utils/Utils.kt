@@ -23,20 +23,13 @@ import java.util.*
 
 class Utils {
     companion object {
-        fun showLoading(isLoading: Boolean, progress: ProgressBar) {
-            progress.visibility = if (isLoading) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
+        fun ProgressBar.showLoading(isLoading: Boolean) {
+            visibility = if (isLoading) View.VISIBLE else View.GONE
+
         }
 
-        fun dataNotFound(isNotFound: Boolean, tvNotFound: TextView) {
-            tvNotFound.visibility = if (isNotFound) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
+        fun TextView.dataNotFound(isNotFound: Boolean) {
+            visibility = if (isNotFound) View.VISIBLE else View.GONE
         }
 
         private const val FILENAME_FORMAT = "dd-MMM-yyyy"
@@ -86,6 +79,7 @@ class Utils {
 
             return myFile
         }
+
         fun formatDate(currentDateString: String, targetTimeZone: String): String {
             val instant = Instant.parse(currentDateString)
             val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy | HH:mm")

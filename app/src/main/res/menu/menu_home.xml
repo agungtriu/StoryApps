@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_bookmarked"
+        android:icon="@drawable/ic_bookmarked"
         android:title="@string/all_bookmarked"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settings"
         android:title="@string/setting_title"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 </menu>

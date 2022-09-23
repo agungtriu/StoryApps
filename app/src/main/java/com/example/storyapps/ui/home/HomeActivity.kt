@@ -51,17 +51,17 @@ class HomeActivity : AppCompatActivity() {
 
     private fun loadData(token: String) {
         with(homeBinding) {
-            showLoading(true, pbHome)
+            pbHome.showLoading(true)
             homeViewModel.loadStory(page, token).observe(this@HomeActivity) {
                 when (it.status) {
-                    Status.LOADING -> showLoading(false, pbHome)
+                    Status.LOADING -> pbHome.showLoading(false)
                     Status.SUCCESS -> {
-                        showLoading(false, pbHome)
+                        pbHome.showLoading(false)
                         storyAdapter.setStory(it.data as List<StoryEntity>)
                     }
                     Status.ERROR -> {
-                        showLoading(false, pbHome)
-                        dataNotFound(true, tvHomeNofound)
+                        pbHome.showLoading(false)
+                        tvHomeNofound.dataNotFound(true)
                         if (it.message != null) {
                             Toast.makeText(this@HomeActivity, it.message, Toast.LENGTH_LONG).show()
                         }

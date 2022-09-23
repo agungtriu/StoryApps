@@ -46,14 +46,14 @@ class LoginActivity : AppCompatActivity() {
                         edLoginPassword.error = getString(R.string.all_password_empty)
                     }
                 } else {
-                    showLoading(true, pbLogin)
+                    pbLogin.showLoading(true)
                     val loginBody =
                         LoginBody(edLoginEmail.text.toString(), edLoginPassword.text.toString())
                     loginViewModel.loginAccount(loginBody).observe(this@LoginActivity) {
                         when (it.status) {
-                            Status.LOADING -> showLoading(false, pbLogin)
+                            Status.LOADING -> pbLogin.showLoading(false)
                             Status.SUCCESS -> {
-                                showLoading(false, pbLogin)
+                                pbLogin.showLoading(false)
                                 if (it.data != null) {
                                     val login = LoginModel(true, it.data.token as String)
                                     loginViewModel.saveLoginStatus(login)
@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
                             }
                             Status.ERROR -> {
-                                showLoading(false, pbLogin)
+                                pbLogin.showLoading(false)
                                 if (!it.message.isNullOrBlank()) {
                                     Toast.makeText(
                                         this@LoginActivity, it.message, Toast.LENGTH_LONG
