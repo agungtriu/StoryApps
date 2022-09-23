@@ -120,9 +120,9 @@ class AddActivity : AppCompatActivity() {
                     addStoryViewModel.addStory(imageMultipart, description, token)
                         .observe(this@AddActivity) {
                             when (it.status) {
-                                Status.LOADING -> showLoading(false, pbAdd)
+                                Status.LOADING -> pbAdd.showLoading(false)
                                 Status.SUCCESS -> {
-                                    showLoading(false, pbAdd)
+                                    pbAdd.showLoading(false)
                                     if (it.data != null) {
                                         Toast.makeText(
                                             this@AddActivity, it.data.message, Toast.LENGTH_LONG
@@ -134,7 +134,7 @@ class AddActivity : AppCompatActivity() {
                                     }
                                 }
                                 Status.ERROR -> {
-                                    showLoading(false, pbAdd)
+                                    pbAdd.showLoading(false)
                                     if (!it.message.isNullOrBlank()) {
                                         Toast.makeText(
                                             this@AddActivity, it.message, Toast.LENGTH_LONG

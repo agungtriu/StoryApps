@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
                         edRegisterPassword.error = getString(R.string.all_password_empty)
                     }
                 } else {
-                    showLoading(true, pbRegister)
+                    pbRegister.showLoading(true)
                     val registerBody = RegisterBody(
                         edRegisterName.text.toString(),
                         edRegisterEmail.text.toString(),
@@ -47,9 +47,9 @@ class RegisterActivity : AppCompatActivity() {
                     )
                     registerViewModel.registerAccount(registerBody).observe(this@RegisterActivity) {
                         when (it.status) {
-                            Status.LOADING -> showLoading(false, pbRegister)
+                            Status.LOADING -> pbRegister.showLoading(false)
                             Status.SUCCESS -> {
-                                showLoading(false, pbRegister)
+                                pbRegister.showLoading(false)
                                 Toast.makeText(
                                     this@RegisterActivity, it.data?.message, Toast.LENGTH_SHORT
                                 ).show()
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
                                 finish()
                             }
                             Status.ERROR -> {
-                                showLoading(false, pbRegister)
+                                pbRegister.showLoading(false)
                                 if (!it.data?.message.isNullOrEmpty()) {
                                     Toast.makeText(
                                         this@RegisterActivity, it.data?.message, Toast.LENGTH_SHORT

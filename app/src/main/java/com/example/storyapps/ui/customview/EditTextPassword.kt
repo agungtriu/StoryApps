@@ -18,9 +18,7 @@ class EditTextPassword : AppCompatEditText {
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         init()
     }
@@ -31,7 +29,8 @@ class EditTextPassword : AppCompatEditText {
             }
 
             override fun onTextChanged(text: CharSequence, p1: Int, p2: Int, p3: Int) {
-                error = if (text.isNotEmpty() && text.toString().length < 6) context.getString(R.string.edit_text_password_alert) else null
+                error =
+                    if (text.isNotEmpty() && text.toString().length < 6) context.getString(R.string.edit_text_password_alert) else null
             }
 
             override fun afterTextChanged(p0: Editable?) {
