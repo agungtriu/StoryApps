@@ -1,15 +1,18 @@
 package com.example.storyapps.ui.add
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Intent
-import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +25,8 @@ import com.example.storyapps.utils.Utils.Companion.rotateBitmap
 import com.example.storyapps.utils.Utils.Companion.showLoading
 import com.example.storyapps.utils.Utils.Companion.uriToFile
 import com.example.storyapps.vo.Status
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -32,6 +37,8 @@ import java.io.File
 class AddActivity : AppCompatActivity() {
     private lateinit var addBinding: ActivityAddBinding
     private lateinit var addStoryViewModel: AddStoryViewModel
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var location: Location
     private var token = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +46,13 @@ class AddActivity : AppCompatActivity() {
         setContentView(addBinding.root)
 
         token = intent.getStringExtra(EXTRA_ADD).toString()
-
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
+        } else {
+            getMyLastLocation()
         }
 
         addStoryViewModel = obtainViewModel(this)
@@ -52,19 +61,32 @@ class AddActivity : AppCompatActivity() {
 
     private fun listener() {
         with(addBinding) {
-            btAddCamera.setOnClickListener {
-                val intent = Intent(this@AddActivity, CameraActivity::class.java)
-                launcherIntentCameraX.launch(intent)
+            cvAdd.setOnClickListener {
+                dialogOption()
             }
-            btAddGallery.setOnClickListener {
-                startGallery()
-            }
-            buttonAdd.setOnClickListener {
+            btAdd.setOnClickListener {
                 upload()
             }
-            imgAddBack.setOnClickListener {
+            ivAddBack.setOnClickListener {
                 onBackPressed()
             }
+        }
+    }
+
+    private fun dialogOption() {
+        val builder = Dialog(this)
+        with(builder) {
+            setContentView(R.layout.dialog_resources)
+            findViewById<ConstraintLayout>(R.id.cl_resources_camera).setOnClickListener {
+                val intent = Intent(this@AddActivity, CameraActivity::class.java)
+                launcherIntentCameraX.launch(intent)
+                dismiss()
+            }
+            findViewById<ConstraintLayout>(R.id.cl_resources_gallery).setOnClickListener {
+                startGallery()
+                dismiss()
+            }
+            show()
         }
     }
 
@@ -79,14 +101,15 @@ class AddActivity : AppCompatActivity() {
             val result = rotateBitmap(
                 BitmapFactory.decodeFile(getFile?.path), isBackCamera
             )
-
+            addBinding.ivAdd.visibility = View.GONE
+            addBinding.ivAddPreview.visibility = View.VISIBLE
             addBinding.ivAddPreview.setImageBitmap(result)
         }
     }
 
     private fun startGallery() {
         val intent = Intent()
-        intent.action = ACTION_GET_CONTENT
+        intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, getString(R.string.add_chose_picture))
         launcherIntentGallery.launch(chooser)
@@ -99,6 +122,8 @@ class AddActivity : AppCompatActivity() {
             val selectedImg: Uri = result.data?.data as Uri
             val myFile = uriToFile(selectedImg, this@AddActivity)
             getFile = myFile
+            addBinding.ivAdd.visibility = View.GONE
+            addBinding.ivAddPreview.visibility = View.VISIBLE
             addBinding.ivAddPreview.setImageURI(selectedImg)
         }
     }
@@ -110,14 +135,16 @@ class AddActivity : AppCompatActivity() {
             } else {
                 if (getFile != null) {
                     val file = getFile as File
-
+                    val lat = location.latitude.toString().toRequestBody("text/plain".toMediaType())
+                    val lon =
+                        location.longitude.toString().toRequestBody("text/plain".toMediaType())
                     val description =
                         edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
                     val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                     val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                         "photo", file.name, requestImageFile
                     )
-                    addStoryViewModel.addStory(imageMultipart, description, token)
+                    addStoryViewModel.addStory(imageMultipart, description, lat, lon, token)
                         .observe(this@AddActivity) {
                             when (it.status) {
                                 Status.LOADING -> pbAdd.showLoading(false)
@@ -164,12 +191,40 @@ class AddActivity : AppCompatActivity() {
                     this, getString(R.string.add_no_permission), Toast.LENGTH_SHORT
                 ).show()
                 finish()
+            } else {
+                getMyLastLocation()
             }
         }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun getMyLastLocation() {
+        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) && checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    this.location = location
+                } else {
+                    Toast.makeText(
+                        this@AddActivity,
+                        getString(R.string.all_location_not_found),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else {
+            ActivityCompat.requestPermissions(
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
+        }
+    }
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this, permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun obtainViewModel(
@@ -181,7 +236,11 @@ class AddActivity : AppCompatActivity() {
 
     companion object {
         const val CAMERA_X_RESULT = 200
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private val REQUIRED_PERMISSIONS = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
         private const val REQUEST_CODE_PERMISSIONS = 10
         const val EXTRA_ADD = "extra_add_story"
         const val EXTRA_PICTURE = "picture"

@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">Story</string>
     <string name="image_splash_screen">image splash screen</string>
-    <string name="all_email">Email</string>
-    <string name="all_password">Password</string>
-    <string name="all_login">LOGIN</string>
-    <string name="all_register">REGISTER</string>
+    <string name="all_login">Login</string>
+    <string name="all_register">Register</string>
     <string name="all_image">image</string>
-    <string name="all_email_example">your@email.com</string>
+    <string name="all_email_hint">enter your email</string>
     <string name="all_name">Name</string>
-    <string name="menu_logout">Logout</string>
+    <string name="all_logout">Logout</string>
     <string name="add_title">Add Story</string>
     <string name="camera_capture_image">capture image</string>
     <string name="camera_flip_camera">flip camera</string>
@@ -16,7 +14,7 @@
     <string name="add_gallery">Gallery</string>
     <string name="add_camera">Camera</string>
     <string name="add_upload">Upload</string>
-    <string name="add_description">Description</string>
+    <string name="add_description">Write caption</string>
     <string name="add_chose_picture">Choose a Picture</string>
     <string name="add_insert_image">Please enter an image first.</string>
     <string name="add_no_permission">Didn\'t get permission.</string>
@@ -25,7 +23,7 @@
     <string name="home_not_found">Data Not Found</string>
     <string name="edit_text_email_invalid">Invalid Email</string>
     <string name="edit_text_password_alert">Password must be 6 characters</string>
-    <string name="register_example_name">John</string>
+    <string name="register_example_hint">enter your name</string>
     <string name="all_email_empty">email cannot be empty</string>
     <string name="all_password_empty">password cannot be empty</string>
     <string name="all_name_empty">name cannot be empty</string>
@@ -39,4 +37,23 @@
     <string name="all_bookmarked">Bookmarked</string>
     <string name="setting_title">Setting</string>
     <string name="setting_language">Language</string>
+    <string name="all_maps">Maps</string>
+    <string name="all_location_not_found">Location is not found. Try Again</string>
+    <string name="maps_style_failed">Style parsing failed.</string>
+    <string name="maps_style_cant_find">"Can't find style. Error: "</string>
+    <string name="dialog_choose">Choose</string>
+    <string name="login_desc">Please enter details below</string>
+    <string name="all_password_hint">enter your password</string>
+    <string name="register_desc">Please complete details below to register</string>
+    <string name="utils_time_ago">ago</string>
+    <string name="utils_time_minutes">minutes</string>
+    <string name="utils_time_seconds">Seconds</string>
+    <string name="utils_time_hours">Hours</string>
+    <string name="utils_time_days">days</string>
+    <string name="utils_time_second">second</string>
+    <string name="utils_time_minute">minute</string>
+    <string name="utils_time_hour">hour</string>
+    <string name="utils_time_day">day</string>
+    <string name="logout_ask">Are you sure want to logout from this account?</string>
+    <string name="logout_cancel">Cancel</string>
 </resources>

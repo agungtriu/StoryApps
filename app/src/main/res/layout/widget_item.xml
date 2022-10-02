@@ -5,11 +5,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image_widget_item"
+        android:id="@+id/iv_widget_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        tools:srcCompat="@drawable/ic_placeholder" />
+        tools:srcCompat="@drawable/ic_placeholder"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "storyentities")
+@Entity(tableName = "story_entities")
 data class StoryEntity(
     @ColumnInfo(name = "photoUrl")
     val photoUrl: String? = null,

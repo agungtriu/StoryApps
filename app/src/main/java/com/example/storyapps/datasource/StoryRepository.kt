@@ -2,7 +2,9 @@ package com.example.storyapps.datasource
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.*
 import com.example.storyapps.datasource.local.LocalDataSource
+import com.example.storyapps.datasource.local.StoryDatabase
 import com.example.storyapps.datasource.local.entity.*
 import com.example.storyapps.datasource.remote.ApiResponse
 import com.example.storyapps.datasource.remote.RemoteDataSource
@@ -11,11 +13,13 @@ import com.example.storyapps.datasource.remote.response.LoginResponse
 import com.example.storyapps.datasource.remote.response.RegisterResponse
 import com.example.storyapps.datasource.remote.response.StoryResponse
 import com.example.storyapps.utils.AppExecutors
+import com.example.storyapps.utils.Config.Companion.PAGE_SIZE
 import com.example.storyapps.vo.Resource
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class StoryRepository private constructor(
+    private val database: StoryDatabase,
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
@@ -74,12 +78,17 @@ class StoryRepository private constructor(
     }
 
     override fun addStory(
-        imageFile: MultipartBody.Part, description: RequestBody, token: String
+        imageFile: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody,
+        lon: RequestBody,
+        token: String
     ): LiveData<Resource<AddStoryEntity>> {
         val addStoryResult = MutableLiveData<Resource<AddStoryEntity>>()
-        remoteDataSource.addStory(
-            imageFile,
+        remoteDataSource.addStory(imageFile,
             description,
+            lat,
+            lon,
             token,
             object : RemoteDataSource.LoadAddStoryCallback {
                 override fun onAddStoryReceived(addStory: ApiResponse<AddStoryResponse>) {
@@ -98,39 +107,45 @@ class StoryRepository private constructor(
         return addStoryResult
     }
 
-    override fun loadStories(page: Int, token: String): LiveData<Resource<List<StoryEntity>>> {
-        val storiesResult = MutableLiveData<Resource<List<StoryEntity>>>()
-        remoteDataSource.loadStory(page, token, object : RemoteDataSource.LoadAllStoryCallback {
-            override fun onAllStoryReceived(listStories: ApiResponse<StoryResponse>) {
+    @OptIn(ExperimentalPagingApi::class)
+    override fun loadStories(token: String): LiveData<PagingData<StoryEntity>> {
+        return Pager(config = PagingConfig(
+            pageSize = PAGE_SIZE
+        ), remoteMediator = StoryRemoteMediator(
+            database, localDataSource, remoteDataSource, token
+        ), pagingSourceFactory = {
+            localDataSource.loadStories()
+        }).liveData
+    }
+
+    override fun loadMapsStories(token: String): LiveData<Resource<List<StoryEntity>>> {
+        val mapsStoryResult = MutableLiveData<Resource<List<StoryEntity>>>()
+        remoteDataSource.loadMapsStory(token, object : RemoteDataSource.LoadMapsStoryCallback {
+            override fun onMapsStoryReceived(listStories: ApiResponse<StoryResponse>) {
                 if (listStories.body != null) {
-                    val storyList = ArrayList<StoryEntity>()
+                    val stories = arrayListOf<StoryEntity>()
                     if (listStories.body.listStory != null) {
-                        for (response in listStories.body.listStory) {
-                            if (response != null) {
-                                if (response.id != null) {
-                                    val story = StoryEntity(
-                                        response.photoUrl,
-                                        response.createdAt,
-                                        response.name,
-                                        response.description,
-                                        response.lon,
-                                        response.id,
-                                        response.lat
+                        for (i in listStories.body.listStory) {
+                            if (i != null) {
+                                if (i.id != null) {
+                                    stories.add(
+                                        StoryEntity(
+                                            i.photoUrl,
+                                            i.createdAt,
+                                            i.name,
+                                            i.description,
+                                            i.lon,
+                                            i.id,
+                                            i.lat
+                                        )
                                     )
-                                    storyList.add(story)
                                 }
                             }
                         }
-                        storiesResult.postValue(Resource.success(storyList))
-                    } else {
-                        storiesResult.postValue(
-                            Resource.error(
-                                listStories.message, null
-                            )
-                        )
+                        mapsStoryResult.postValue(Resource.success(stories))
                     }
                 } else {
-                    storiesResult.postValue(
+                    mapsStoryResult.postValue(
                         Resource.error(
                             listStories.message, null
                         )
@@ -138,15 +153,22 @@ class StoryRepository private constructor(
                 }
             }
         })
-        return storiesResult
+        return mapsStoryResult
     }
 
-    override fun loadStoriesBooked(): LiveData<List<StoryEntity>> = localDataSource.loadStoriesBooked()
+    override fun loadStoriesBooked(): LiveData<PagingData<StoryFavoriteEntity>> {
+        return Pager(config = PagingConfig(
+            pageSize = PAGE_SIZE
+        ), pagingSourceFactory = {
+            localDataSource.loadStoriesBooked()
+        }).liveData
+    }
 
-    override fun loadStoryBookedById(id: String): LiveData<StoryEntity> = localDataSource.loadStoryBookedById(id)
+    override fun loadStoryBookedById(id: String): LiveData<StoryFavoriteEntity> =
+        localDataSource.loadStoryBookedById(id)
 
-    override fun insertStory(storyEntity: StoryEntity) =
-        appExecutors.diskIO().execute { localDataSource.insertStory(storyEntity) }
+    override fun insertStory(storyFavoriteEntity: StoryFavoriteEntity) =
+        appExecutors.diskIO().execute { localDataSource.insertStory(storyFavoriteEntity) }
 
     override fun deleteStoryById(id: String) =
         appExecutors.diskIO().execute { localDataSource.deleteStoryById(id) }
@@ -155,10 +177,13 @@ class StoryRepository private constructor(
         @Volatile
         private var instance: StoryRepository? = null
         fun getInstance(
-            remoteData: RemoteDataSource, localData: LocalDataSource, appExecutors: AppExecutors
+            database: StoryDatabase,
+            remoteData: RemoteDataSource,
+            localData: LocalDataSource,
+            appExecutors: AppExecutors
         ): StoryRepository = instance ?: synchronized(this) {
             instance ?: StoryRepository(
-                remoteData, localData, appExecutors
+                database, remoteData, localData, appExecutors
             ).apply { instance = this }
         }
     }

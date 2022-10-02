@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -31,9 +32,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
     buildFeatures {
         viewBinding true
+    }
+    testOptions {
+        animationsDisabled = true
     }
 }
 
@@ -47,8 +52,8 @@ dependencies {
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
     implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -57,12 +62,28 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:$datastoreVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelKtxVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataKtxVersion"
-    implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.camera:camera-camera2:$cameraxVersion"
     implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
     implementation "androidx.camera:camera-view:$cameraxVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-paging:$paging2Version"
     kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$paging3Version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
+    implementation "com.google.android.gms:play-services-maps:$gmsMapsVersion"
+    implementation "com.google.android.gms:play-services-location:$gmsLocationVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3Version"
+    androidTestImplementation "com.squareup.okhttp3:okhttp-tls:$okhttp3Version"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
 }

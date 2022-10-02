@@ -7,7 +7,7 @@
     tools:context=".ui.setting.SettingActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_setting"
+        android:id="@+id/tb_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
@@ -23,7 +23,7 @@
             android:layout_marginEnd="@dimen/margin_all_medium">
 
             <ImageView
-                android:id="@+id/img_setting_back"
+                android:id="@+id/iv_setting_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_back"
@@ -33,7 +33,7 @@
                 tools:ignore="contentDescription" />
 
             <TextView
-                android:id="@+id/textview_setting_toolbar"
+                android:id="@+id/tv_setting_toolbar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_all_small"
@@ -46,37 +46,37 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_setting_back"
+                app:layout_constraintStart_toEndOf="@id/iv_setting_back"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/tv_language_setting"
+        android:id="@+id/tv_language_title"
         style="@style/TextContent.Desc"
         android:layout_margin="@dimen/margin_all_medium"
         android:text="@string/setting_language"
-        app:layout_constraintEnd_toStartOf="@id/btn_language_setting"
+        app:layout_constraintEnd_toStartOf="@id/tv_language_setting"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_setting" />
+        app:layout_constraintTop_toBottomOf="@id/tb_setting" />
 
     <TextView
-        android:id="@+id/btn_language_setting"
+        android:id="@+id/tv_language_setting"
         style="@style/TextContent.Desc"
         android:layout_marginEnd="@dimen/margin_all_medium"
         android:textAlignment="textEnd"
         app:drawableEndCompat="@drawable/ic_forward"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_language_setting"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_language_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_language_setting"
+        app:layout_constraintStart_toEndOf="@id/tv_language_title"
         tools:text="Current Language" />
 
     <TextView
         android:id="@+id/tv_setting_logout"
         style="@style/TextContent.Desc"
         android:layout_margin="@dimen/margin_all_medium"
-        android:text="@string/menu_logout"
+        android:text="@string/all_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_language_setting" />
+        app:layout_constraintTop_toBottomOf="@id/tv_language_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,9 +82,7 @@ class LoginActivity : AppCompatActivity() {
                 val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     this@LoginActivity,
                     Pair(ivLogin, getString(R.string.photo)),
-                    Pair(tvLoginTitleEmail, getString(R.string.all_email)),
                     Pair(edLoginEmail, getString(R.string.all_email_ed)),
-                    Pair(tvLoginTitlePassword, getString(R.string.all_password)),
                     Pair(edLoginPassword, getString(R.string.all_password_ed)),
                     Pair(btLoginRegister, getString(R.string.all_register))
                 )

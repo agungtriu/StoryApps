@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapps.datasource.StoryRepository
+import com.example.storyapps.di.Injection
 import com.example.storyapps.ui.LoginPreferences
 import com.example.storyapps.ui.add.AddStoryViewModel
 import com.example.storyapps.ui.bookmarked.BookmarkedViewModel
 import com.example.storyapps.ui.detail.DetailViewModel
-import com.example.storyapps.ui.di.Injection
 import com.example.storyapps.ui.home.HomeViewModel
 import com.example.storyapps.ui.login.LoginViewModel
+import com.example.storyapps.ui.maps.MapsViewModel
 import com.example.storyapps.ui.register.RegisterViewModel
 import com.example.storyapps.ui.setting.SettingViewModel
 import com.example.storyapps.ui.splashscreen.SplashScreenViewModel
@@ -27,7 +28,8 @@ class ViewModelFactory private constructor(
             if (INSTANCE == null) {
                 synchronized(ViewModelFactory::class.java) {
                     INSTANCE = ViewModelFactory(
-                        Injection.provideLoginPreference(context), Injection.provideRepository(context)
+                        Injection.provideLoginPreference(context),
+                        Injection.provideRepository(context)
                     )
                 }
             }
@@ -47,12 +49,14 @@ class ViewModelFactory private constructor(
             return HomeViewModel(preferences, repository) as T
         } else if (modelClass.isAssignableFrom(AddStoryViewModel::class.java)) {
             return AddStoryViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(BookmarkedViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(BookmarkedViewModel::class.java)) {
             return BookmarkedViewModel(repository) as T
-        }else if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
             return SettingViewModel(preferences) as T
+        } else if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            return MapsViewModel(preferences, repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

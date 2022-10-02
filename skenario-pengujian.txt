@@ -1,0 +1,289 @@
+UNIT TEST
+
+VIEW MODEL
+1. AddStoryViewModelTest
+a. when Upload Story Should Return Success
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+b. when Upload Story Network Error Should Return Error
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+
+2. BookmarkedViewModelTest
+a. when Get Stories Bookmarked Should Not Null
+- Memastikan data tidak null
+- Memastikan data sama dengan ekspektasi
+- Memastikan ukuran data sama dengan ekspektasi
+- Memastikan id pada data pertama sama dengan id pada data ekspektasi pertama
+
+3. DetailViewModelTest
+a. when Get Story from Bookmarked Should Not Null
+- Memastikan data tidak null
+- Memastikan id sesuai dengan id ekspektasi
+- Memastikan name sesuai dengan name ekspektasi
+- Memastikan photoUrl sesuai dengan photoUrl ekspektasi
+- Memastikan createdAt sesuai dengan createAt ekspektasi
+- Memastikan description sesuai dengan description ekspektasi
+- Memastikan lat sesuai dengan lat ekspektasi
+- Memastikan lon sesuai dengan lon ekspektasi 
+b. when Get Story from Bookmarked Null
+- Memastikan data null
+c. when Insert Story to Bookmark
+d. when Delete Story from Bookmarked
+
+4. HomeViewModelTest
+a. when Login Status True
+- Memastikan data tidak null
+- Memastikan mengembalikan status isLogin True
+b. when Login Status False
+- Memastikan data tidak null
+- Memastikan mengembalikan status isLogin False
+c. when Get Stories Should Not Null and Return Success
+- Memastikan data tidak null
+- Memastikan data sama dengan ekspektasi
+- Memastikan ukuran data sama dengan ekspektasi
+- Memastikan id pada data pertama sama dengan id pada data ekspektasi pertama
+
+5. LoginViewModelTest
+a. when Login Status True
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+b. when Login Status False
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.ERROR
+
+6. MapsViewModelTest
+a. when Login Status True
+- Memastikan data tidak null
+- Memastikan status isLogin True
+b. when Login Status False
+- Memastikan data tidak null
+- Memastikan mengembalikan status isLogin False
+c. when Get Stories For Maps Should Return Success
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+d. when Network Error Should Return Error
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+
+7. RegisterViewModelTest
+a. when Register Success
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+b. when Register Failed
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+
+8. SettingViewModelTest
+a. when Logout
+
+9. SplashScreenViewModelTest
+a. when Login Status True
+- Memastikan data tidak null
+- Memastikan mengembalikan status isLogin True
+b. when Login Status False
+- Memastikan data tidak null
+- Memastikan mengembalikan status isLogin False
+
+REPOSITORY
+1. StoryRepositoryTest
+a. when Register Account Successfully
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+b. when Register Account Failed
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+c. when Login Successfully
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+d. when Login Failed
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+e. when AddStory Successfully
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+f. when AddStory Failed
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+g. when Load Story paging
+- Memastikan data tidak null
+- Memastikan data sama dengan ekspektasi
+- Memastikan ukuran data sama dengan ekspektasi
+- Memastikan id pada data pertama sama dengan id pada data ekspektasi pertama
+h. when Load Maps Successfully
+- Memastikan data tidak null
+- Memastikan statusnya sama dengan Status.SUCCESS
+i. when Load Maps Failed
+- Memastikan data null
+- Memastikan statusnya sama dengan Status.ERROR
+j. when Load Story Bookmarked paging
+- Memastikan data tidak null
+- Memastikan data sama dengan ekspektasi
+- Memastikan ukuran data sama dengan ekspektasi
+- Memastikan id pada data pertama sama dengan id pada data ekspektasi pertama
+k. when Load Story by Id
+- Memastikan data tidak null
+- Memastikan id sesuai dengan id ekspektasi
+- Memastikan name sesuai dengan name ekspektasi
+- Memastikan photoUrl sesuai dengan photoUrl ekspektasi
+- Memastikan createdAt sesuai dengan createAt ekspektasi
+- Memastikan description sesuai dengan description ekspektasi
+- Memastikan lat sesuai dengan lat ekspektasi
+- Memastikan lon sesuai dengan lon ekspektasi 
+l. when Insert Story to Bookmark
+m. when Delete Story from Bookmark
+
+END TO END TESTING
+1. SplashScreenActivityTest
+a. registerAccount_Success
+- Memastikan bt_login_register dalam keadaan tampil.
+- Memberi tindakan klik pada bt_login_register.
+- Memastikan ed_register_name dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text nama pada ed_register_name.
+- Memastikan ed_register_email dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text email pada ed_register_email.
+- Memastikan ed_register_password dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text password pada ed_register_password.
+- Memastikan bt_register dalam keadaan tampil.
+- Memberi tindakan klik pada bt_register.
+
+b. loginAccount_Success
+- Memastikan ed_login_email dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text email pada ed_login_email.
+- Memastikan ed_login_password dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text password pada ed_login_password.
+- Memastikan bt_login dalam keadaan tampil.
+- Memberi tindakan klik pada bt_login.
+
+c. loadStory_Success
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan swipeUp pada rv_home.
+
+d. loadDetailStory_Success
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan klik pada data pertama rv_home.
+- Memastikan iv_detail_photo dalam keadaan tampil.
+- Memastikan tv_detail_name dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_name tidak kosong.
+- Memastikan tv_detail_date dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_date tidak kosong.
+- Memastikan tv_detail_description dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_descriptiono tidak kosong.
+
+e. bookmarkStory_Success
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan klik pada data pertama rv_home.
+- Memastikan iv_detail_photo dalam keadaan tampil.
+- Memastikan tv_detail_name dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_name tidak kosong.
+- Memastikan tv_detail_date dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_date tidak kosong.
+- Memastikan tv_detail_description dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_descriptiono tidak kosong.
+- Memastikan iv_detail_bookmark dalam keadaan tampil.
+- Memberi tindakan klik pada iv_detail_bookmark.
+- Memastikan iv_detail_back dalam keadaan tampil.
+- Memberi tindakan klik pada iv_detail_back.
+- Memastikan action_bookmarked dalam keadaan tampil.
+- Memberi tindakan klik pada action_bookmarked.
+- Memastikan rv_bookmarked dalam keadaan tampil.
+- Memberi tindakan klik pada data pertama rv_bookmarked.
+- Memastikan iv_detail_photo dalam keadaan tampil.
+- Memastikan tv_detail_name dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_name tidak kosong.
+- Memastikan tv_detail_date dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_date tidak kosong.
+- Memastikan tv_detail_description dalam keadaan tampil.
+- Memastikan text yang ditampilkan pada tv_detail_descriptiono tidak kosong.
+- Memastikan iv_detail_bookmark dalam keadaan tampil.
+- Memberi tindakan klik pada iv_detail_bookmark.
+- Memastikan iv_detail_back dalam keadaan tampil.
+- Memberi tindakan klik pada iv_detail_back.
+
+f. addStoryCameraX_Success
+- Memastikan fab_home_add dalam keadaan tampil.
+- Memberi tindakan klik pada fab_home_add.
+- Memastikan cv_add dalam keadaan tampil.
+- Memberi tindakan klik pada cv_add.
+- Memastikan cl_resources_camera dalam keadaan tampil.
+- Memberi tindakan klik pada cl_resources_camera.
+- Memastikan pv_camera dalam keadaan tampil.
+- Memastikan iv_camera_capture dalam keadaan tampil.
+- Memberi tindakan klik pada iv_camera_capture.
+- Memastikan iv_add_preview dalam keadaan tampil.
+- Memastikan ed_add_description dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text "Berkah Jaya Kaya Rahmat" pada ed_add_description.
+- Memastikan bt_add dalam keadaan tampil.
+- Memberi tindakan klik pada bt_add.
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan swipeDown pada rv_home.
+
+g. addStoryCameraXSelfie_Success
+- Memastikan fab_home_add dalam keadaan tampil.
+- Memberi tindakan klik pada fab_home_add.
+- Memastikan cv_add dalam keadaan tampil.
+- Memberi tindakan klik pada cv_add.
+- Memastikan cl_resources_camera dalam keadaan tampil.
+- Memberi tindakan klik pada cl_resources_camera.
+- Memastikan pv_camera dalam keadaan tampil.
+- Memastikan iv_camera_switch dalam keadaan tampil.
+- Memberi tindakan klik pada iv_camera_switch.
+- Memastikan iv_camera_capture dalam keadaan tampil.
+- Memberi tindakan klik pada iv_camera_capture.
+- Memastikan iv_add_preview dalam keadaan tampil.
+- Memastikan ed_add_description dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text "Berkah Jaya Kaya Rahmat" pada ed_add_description.
+- Memastikan bt_add dalam keadaan tampil.
+- Memberi tindakan klik pada bt_add.
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan swipeDown pada rv_home.
+
+h. addStoryGallery_Success
+- Memastikan fab_home_add dalam keadaan tampil.
+- Memberi tindakan klik pada fab_home_add.
+- Memastikan cv_add dalam keadaan tampil.
+- Memberi tindakan klik pada cv_add.
+- Memastikan cl_resources_gallery dalam keadaan tampil.
+- Inisialisasi Intents.
+- Mempersiapkan respon yang berisi resource lokal kalau ada action choose.
+- Memberi tindakan klik pada cl_resources_gallery.
+- Memastikan iv_add_preview dalam keadaan tampil.
+- Melepaskan Intents
+- Memastikan ed_add_description dalam keadaan tampil.
+- Memberi tindakan berupa mengetikan text "Berkah Jaya Kaya Rahmat" pada ed_add_description.
+- Memastikan bt_add dalam keadaan tampil.
+- Memberi tindakan klik pada bt_add.
+- Memastikan rv_home dalam keadaan tampil.
+- Memberi tindakan swipeDown pada rv_home.
+
+i. loadMaps_Success
+- Memastikan iv_home_maps dalam keadaan tampil.
+- Memberi tindakan klik pada iv_home_maps.
+- Memastikan f_maps dalam keadaan tampil.
+
+j. logout_Cancel
+- Memastikan iv_home_setting dalam keadaan tampil.
+- Memberi tindakan klik pada iv_home_setting.
+- Memastikan tv_setting_logout dalam keadaan tampil.
+- Memberi tindakan klik pada tv_setting_logout.
+- Memastikan tv_logout_cancel dalam keadaan tampil.
+- Memberi tindakan klik pada tv_logout_cancel.
+- Memastikan tv_setting_logout dalam keadaan tampil.
+
+k. logout_Success
+- Memastikan iv_home_setting dalam keadaan tampil.
+- Memberi tindakan klik pada iv_home_setting.
+- Memastikan tv_setting_logout dalam keadaan tampil.
+- Memberi tindakan klik pada tv_setting_logout.
+- Memastikan tv_logout_confirm dalam keadaan tampil.
+- Memberi tindakan klik pada tv_logout_confirm.
+- Memastikan tv_login_title dalam keadaan tampil.
+
+INTEGRATION TESTING
+1. HomeActivityTest
+a. loadStories_Success
+- Memastikan rv_home dalam keadaan tampil.
+- Data yang ditampilkan sesuai.
+
+b. loadStories_Error
+- Memastikan tv_home_empty dalam keadaan tampil.

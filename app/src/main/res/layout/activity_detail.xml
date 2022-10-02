@@ -7,7 +7,7 @@
     tools:context=".ui.detail.DetailActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_detail"
+        android:id="@+id/tb_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
@@ -23,7 +23,7 @@
             android:layout_marginEnd="@dimen/margin_all_medium">
 
             <ImageView
-                android:id="@+id/img_detail_back"
+                android:id="@+id/iv_detail_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_back"
@@ -33,7 +33,7 @@
                 tools:ignore="contentDescription" />
 
             <TextView
-                android:id="@+id/textview_detail_toolbar"
+                android:id="@+id/tv_detail_toolbar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_all_small"
@@ -45,18 +45,18 @@
                 android:textSize="@dimen/text_all_toolbar"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/img_detail_bookmark"
-                app:layout_constraintStart_toEndOf="@id/img_detail_back"
+                app:layout_constraintEnd_toStartOf="@id/iv_detail_bookmark"
+                app:layout_constraintStart_toEndOf="@id/iv_detail_back"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/img_detail_bookmark"
+                android:id="@+id/iv_detail_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_bookmark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/textview_detail_toolbar"
+                app:layout_constraintStart_toEndOf="@id/tv_detail_toolbar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="contentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -69,34 +69,56 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_detail">
+        app:layout_constraintTop_toBottomOf="@id/tb_detail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_detail_photo"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/all_image"
+                android:layout_height="420dp"
+                android:layout_marginTop="@dimen/margin_all_medium"
+                android:layout_marginStart="@dimen/margin_all_medium"
+                android:layout_marginEnd="@dimen/margin_all_medium"
+                android:layout_marginBottom="@dimen/margin_all_small"
                 android:transitionName="@string/photo"
+                app:cardCornerRadius="@dimen/radius_all_tiny"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toTopOf="@id/tv_detail_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_detail_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/all_image"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_detail_name"
                 style="@style/TextContent.Title"
                 android:layout_marginStart="@dimen/margin_all_medium"
-                android:layout_marginTop="@dimen/margin_all_medium"
                 android:layout_marginEnd="@dimen/margin_all_medium"
                 android:transitionName="@string/all_name"
                 app:layout_constraintBottom_toTopOf="@id/tv_detail_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_detail_photo" />
+                app:layout_constraintTop_toBottomOf="@id/cv_detail" />
 
             <TextView
                 android:id="@+id/tv_detail_date"
@@ -113,14 +135,13 @@
                 style="@style/TextContent.Desc"
                 android:layout_marginTop="@dimen/margin_all_small"
                 android:layout_marginBottom="@dimen/margin_all_medium"
-                android:transitionName="@string/add_description"
-                app:layout_constraintBottom_toTopOf="@id/view_detail"
+                app:layout_constraintBottom_toTopOf="@id/v_detail"
                 app:layout_constraintEnd_toEndOf="@id/tv_detail_name"
                 app:layout_constraintStart_toStartOf="@id/tv_detail_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_detail_date" />
 
             <View
-                android:id="@+id/view_detail"
+                android:id="@+id/v_detail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
