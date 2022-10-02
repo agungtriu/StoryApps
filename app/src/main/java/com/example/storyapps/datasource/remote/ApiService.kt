@@ -27,12 +27,21 @@ interface ApiService {
     fun addStory(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody,
+        @Part("lon") lon: RequestBody,
         @Header("Authorization") token: String
     ): Call<AddStoryResponse>
 
     @GET("stories")
-    fun loadStory(
+    suspend fun loadStory(
+        @Query("size") size: Int,
         @Query("page") page: Int,
+        @Header("Authorization") token: String
+    ): StoryResponse
+
+    @GET("stories")
+    fun loadMapsStory(
+        @Query("location") location: Int = 1,
         @Header("Authorization") token: String
     ): Call<StoryResponse>
 }

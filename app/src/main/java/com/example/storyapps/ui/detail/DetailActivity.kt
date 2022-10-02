@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.storyapps.R
 import com.example.storyapps.databinding.ActivityDetailBinding
 import com.example.storyapps.datasource.local.entity.StoryEntity
+import com.example.storyapps.datasource.local.entity.StoryFavoriteEntity
 import com.example.storyapps.ui.viewmodel.ViewModelFactory
 import com.example.storyapps.utils.Utils.Companion.formatDate
 import java.util.*
@@ -37,8 +38,9 @@ class DetailActivity : AppCompatActivity() {
             if (detailStory != null) {
                 Glide.with(this@DetailActivity).load(detailStory.photoUrl).into(ivDetailPhoto)
                 tvDetailName.text = detailStory.name
-                tvDetailDate.text =
-                    formatDate(detailStory.createdAt.toString(), TimeZone.getDefault().id)
+                tvDetailDate.text = formatDate(
+                    detailStory.createdAt.toString(), TimeZone.getDefault().id, this@DetailActivity
+                )
                 tvDetailDescription.text = detailStory.description
             }
         }
@@ -49,15 +51,24 @@ class DetailActivity : AppCompatActivity() {
 
     private fun listener() {
         with(detailBinding) {
-            imgDetailBookmark.setOnClickListener {
+            ivDetailBookmark.setOnClickListener {
                 if (state) {
                     detailViewModel.deleteStory(detailEntity.id)
                 } else {
-                    detailViewModel.insertStory(detailEntity)
+                    val booked = StoryFavoriteEntity(
+                        detailEntity.photoUrl,
+                        detailEntity.createdAt,
+                        detailEntity.name,
+                        detailEntity.description,
+                        detailEntity.lon,
+                        detailEntity.id,
+                        detailEntity.lat
+                    )
+                    detailViewModel.insertStory(booked)
                 }
                 loadStateBookmark(detailEntity.id)
             }
-            imgDetailBack.setOnClickListener {
+            ivDetailBack.setOnClickListener {
                 onBackPressed()
             }
         }
@@ -67,14 +78,14 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.loadStoryBookedById(id).observe(this) {
             if (it != null) {
                 state = true
-                detailBinding.imgDetailBookmark.setImageDrawable(
+                detailBinding.ivDetailBookmark.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@DetailActivity, R.drawable.ic_bookmarked
                     )
                 )
             } else {
                 state = false
-                detailBinding.imgDetailBookmark.setImageDrawable(
+                detailBinding.ivDetailBookmark.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@DetailActivity, R.drawable.ic_bookmark
                     )

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="margin_all_tiny">4dp</dimen>
     <dimen name="margin_all_small">8dp</dimen>
     <dimen name="margin_all_medium">16dp</dimen>
     <dimen name="margin_all_large">32dp</dimen>
@@ -7,7 +8,9 @@
 
     <dimen name="elevation_all_tiny">4dp</dimen>
 
-    <dimen name="height_all_poster_medium">200dp</dimen>
+    <dimen name="all_poster_tiny">50dp</dimen>
+    <dimen name="all_poster_medium">200dp</dimen>
+    <dimen name="all_poster_large">300dp</dimen>
 
     <dimen name="radius_all_tiny">4dp</dimen>
 

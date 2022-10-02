@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.bookmarked.BookmarkedActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_bookmarked"
+        android:id="@+id/tb_bookmarked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
@@ -22,7 +22,7 @@
             android:layout_marginEnd="@dimen/margin_all_medium">
 
             <ImageView
-                android:id="@+id/img_bookmarked_back"
+                android:id="@+id/iv_bookmarked_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_back"
@@ -32,7 +32,7 @@
                 tools:ignore="contentDescription" />
 
             <TextView
-                android:id="@+id/textview_bookmarked_toolbar"
+                android:id="@+id/tv_bookmarked_toolbar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_all_small"
@@ -44,7 +44,7 @@
                 android:textSize="@dimen/text_all_toolbar"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_bookmarked_back"
+                app:layout_constraintStart_toEndOf="@id/iv_bookmarked_back"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +57,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_bookmarked"
+        app:layout_constraintTop_toBottomOf="@id/tb_bookmarked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

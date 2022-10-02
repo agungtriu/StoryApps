@@ -1,6 +1,7 @@
 package com.example.storyapps.datasource.remote
 
-import androidx.viewbinding.BuildConfig
+import com.example.storyapps.BuildConfig
+import com.example.storyapps.utils.Config.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,11 +16,8 @@ class ApiConfig {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
             }
             val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://story-api.dicoding.dev/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+            val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()).client(client).build()
             return retrofit.create(ApiService::class.java)
         }
     }

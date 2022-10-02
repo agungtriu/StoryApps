@@ -3,12 +3,13 @@ plugins {
     id 'com.android.application' version '7.3.0' apply false
     id 'com.android.library' version '7.3.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1' apply false
 }
 
 ext {
     coreVersion = '1.9.0'
-    activityKtxVersion = '1.5.1'
-    fragmentKtxVersion = '1.5.2'
+    activityKtxVersion = '1.6.0'
+    fragmentKtxVersion = '1.5.3'
     appCompatVersion = '1.5.1'
     recyclerViewVersion = '1.2.1'
     cardViewVersion = '1.0.0'
@@ -16,22 +17,26 @@ ext {
     constraintLayoutVersion = '2.1.4'
     viewPagerVersion = '1.0.0'
     circleImageViewVersion = '3.1.0'
-
     gsonVersion = '2.9.1'
-
-    glideVersion = '4.13.2'
+    glideVersion = '4.14.1'
     retrofitVersion = '2.9.0'
     okhttp3Version = '5.0.0-alpha.10'
-
     viewModelKtxVersion = '2.5.1'
     liveDataKtxVersion = '2.5.1'
-
     datastoreVersion = '1.0.0'
     roomVersion = '2.4.3'
-
+    paging3Version = '3.1.1'
+    paging2Version = '2.4.3'
+    swipeRefreshVersion = '1.1.0'
+    gmsMapsVersion = '18.1.0'
+    gmsLocationVersion = '20.0.0'
     cameraxVersion = '1.1.0'
-
     junitVersion = '4.13.2'
     junitExtversion = '1.1.3'
     espressoVersion = '3.4.0'
+    mockitoVersion = '4.8.0'
+    coreTestingVersion = '2.1.0'
+    kotlinCoroutinesVersion = '1.6.4'
+    mockitoKotlinVersion = '2.2.0'
+    idleResourceVersion = '3.4.0'
 }

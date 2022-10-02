@@ -20,7 +20,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(registerBinding.root)
-
         registerViewModel = obtainViewModel(this)
         registerListener()
     }
@@ -28,14 +27,14 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerListener() {
         with(registerBinding) {
             btRegister.setOnClickListener {
-                if (edRegisterName.text.isNullOrEmpty() ||edRegisterEmail.text.isNullOrEmpty() || edRegisterPassword.text.isNullOrEmpty()){
-                    if (edRegisterName.text.isNullOrEmpty()){
+                if (edRegisterName.text.isNullOrEmpty() || edRegisterEmail.text.isNullOrEmpty() || edRegisterPassword.text.isNullOrEmpty()) {
+                    if (edRegisterName.text.isNullOrEmpty()) {
                         edRegisterName.error = getString(R.string.all_name_empty)
                     }
-                    if (edRegisterEmail.text.isNullOrEmpty()){
+                    if (edRegisterEmail.text.isNullOrEmpty()) {
                         edRegisterEmail.error = getString(R.string.all_email_empty)
                     }
-                    if (edRegisterPassword.text.isNullOrEmpty()){
+                    if (edRegisterPassword.text.isNullOrEmpty()) {
                         edRegisterPassword.error = getString(R.string.all_password_empty)
                     }
                 } else {

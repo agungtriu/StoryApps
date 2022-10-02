@@ -34,6 +34,10 @@
         <item name="fontFamily">@font/mulish_regular</item>
     </style>
 
+    <style name="TextContent.Desc.Center">
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <style name="TextContent.Title">
         <item name="android:textSize">@dimen/text_all_title</item>
         <item name="fontFamily">@font/mulish_bold</item>

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.example.storyapps.R
 import com.example.storyapps.datasource.local.StoryDatabase
-import com.example.storyapps.datasource.local.entity.StoryEntity
+import com.example.storyapps.datasource.local.entity.StoryFavoriteEntity
 import com.example.storyapps.utils.Config.Companion.DATABASE_NAME
 
 
@@ -20,7 +20,7 @@ internal class StackRemoteViewsFactory(
     private val context: Context
 ) : RemoteViewsService.RemoteViewsFactory {
     private val mWidgetItems = ArrayList<Bitmap>()
-    private lateinit var storyEntities: List<StoryEntity>
+    private lateinit var storyEntities: List<StoryFavoriteEntity>
 
     override fun onCreate() {
     }
@@ -51,7 +51,7 @@ internal class StackRemoteViewsFactory(
     @SuppressLint("RemoteViewLayout")
     override fun getViewAt(position: Int): RemoteViews {
         val rv = RemoteViews(context.packageName, R.layout.widget_item)
-        rv.setImageViewBitmap(R.id.image_widget_item, mWidgetItems[position])
+        rv.setImageViewBitmap(R.id.iv_widget_item, mWidgetItems[position])
 
         val extras = bundleOf(
             ImageBannerWidget.EXTRA_ITEM to position
@@ -59,7 +59,7 @@ internal class StackRemoteViewsFactory(
         val fillInIntent = Intent()
         fillInIntent.putExtras(extras)
 
-        rv.setOnClickFillInIntent(R.id.image_widget_item, fillInIntent)
+        rv.setOnClickFillInIntent(R.id.iv_widget_item, fillInIntent)
         return rv
     }
 

@@ -1,13 +1,12 @@
 package com.example.storyapps.datasource.remote
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.storyapps.datasource.local.entity.LoginBody
 import com.example.storyapps.datasource.local.entity.RegisterBody
 import com.example.storyapps.datasource.remote.response.AddStoryResponse
 import com.example.storyapps.datasource.remote.response.LoginResponse
 import com.example.storyapps.datasource.remote.response.RegisterResponse
 import com.example.storyapps.datasource.remote.response.StoryResponse
+import com.example.storyapps.utils.EspressoIdlingResource
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -19,6 +18,7 @@ class RemoteDataSource {
     fun registerAccount(
         registerBody: RegisterBody, callback: LoadRegisterAccountCallback
     ) {
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().registerAccount(registerBody)
         client.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
@@ -31,15 +31,18 @@ class RemoteDataSource {
                         ApiResponse.error(response.message(), response.body())
                     )
                 }
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 callback.onRegisterAccountReceived(ApiResponse.error(t.message.toString(), null))
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
     fun loginAccount(loginBody: LoginBody, callback: LoadLoginAccountCallback) {
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().loginAccount(loginBody)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
@@ -52,10 +55,12 @@ class RemoteDataSource {
                         ApiResponse.error(response.message(), response.body())
                     )
                 }
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 callback.onLoginAccountReceived(ApiResponse.error(t.message.toString(), null))
+                EspressoIdlingResource.decrement()
             }
         })
     }
@@ -63,10 +68,13 @@ class RemoteDataSource {
     fun addStory(
         imageFile: MultipartBody.Part,
         description: RequestBody,
+        lat: RequestBody,
+        lon: RequestBody,
         token: String,
         callback: LoadAddStoryCallback
     ) {
-        val client = ApiConfig.getApiService().addStory(imageFile, description, token)
+        EspressoIdlingResource.increment()
+        val client = ApiConfig.getApiService().addStory(imageFile, description, lat, lon, token)
         client.enqueue(object : Callback<AddStoryResponse> {
             override fun onResponse(
                 call: Call<AddStoryResponse>, response: Response<AddStoryResponse>
@@ -78,37 +86,42 @@ class RemoteDataSource {
                         ApiResponse.error(response.message(), response.body())
                     )
                 }
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<AddStoryResponse>, t: Throwable) {
                 callback.onAddStoryReceived(ApiResponse.error(t.message.toString(), null))
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
-    fun loadStory(
-        page: Int, header: String, callback: LoadAllStoryCallback
-    ): LiveData<ApiResponse<StoryResponse>> {
-        val resultStories = MutableLiveData<ApiResponse<StoryResponse>>()
-        val client = ApiConfig.getApiService().loadStory(page, header)
+    suspend fun loadStory(
+        size: Int, page: Int, header: String
+    ): StoryResponse = ApiConfig.getApiService().loadStory(size, page, header)
+
+    fun loadMapsStory(
+        header: String, callback: LoadMapsStoryCallback
+    ) {
+        EspressoIdlingResource.increment()
+        val client = ApiConfig.getApiService().loadMapsStory(1, header)
         client.enqueue(object : Callback<StoryResponse> {
             override fun onResponse(call: Call<StoryResponse>, response: Response<StoryResponse>) {
                 if (response.isSuccessful) {
-                    callback.onAllStoryReceived(ApiResponse.success(response.body() as StoryResponse))
+                    callback.onMapsStoryReceived(ApiResponse.success(response.body() as StoryResponse))
                 } else {
-                    callback.onAllStoryReceived(
-                        ApiResponse.error(
-                            response.message(), response.body()
-                        )
+                    callback.onMapsStoryReceived(
+                        ApiResponse.error(response.message(), response.body())
                     )
                 }
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<StoryResponse>, t: Throwable) {
-                callback.onAllStoryReceived(ApiResponse.error(t.message.toString(), null))
+                callback.onMapsStoryReceived(ApiResponse.error(t.message.toString(), null))
+                EspressoIdlingResource.decrement()
             }
         })
-        return resultStories
     }
 
     interface LoadRegisterAccountCallback {
@@ -123,8 +136,8 @@ class RemoteDataSource {
         fun onAddStoryReceived(addStory: ApiResponse<AddStoryResponse>)
     }
 
-    interface LoadAllStoryCallback {
-        fun onAllStoryReceived(listStories: ApiResponse<StoryResponse>)
+    interface LoadMapsStoryCallback {
+        fun onMapsStoryReceived(listStories: ApiResponse<StoryResponse>)
     }
 
     companion object {

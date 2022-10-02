@@ -1,5 +1,6 @@
 package com.example.storyapps.ui.splashscreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -12,7 +13,9 @@ import com.example.storyapps.databinding.ActivitySplashScreenBinding
 import com.example.storyapps.ui.home.HomeActivity
 import com.example.storyapps.ui.login.LoginActivity
 import com.example.storyapps.ui.viewmodel.ViewModelFactory
+import com.example.storyapps.utils.EspressoIdlingResource
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var splashScreenBinding: ActivitySplashScreenBinding
     private lateinit var splashScreenViewModel: SplashScreenViewModel
@@ -20,8 +23,8 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         splashScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(splashScreenBinding.root)
-
         splashScreenViewModel = obtainViewModel(this)
+        EspressoIdlingResource.increment()
         splashScreenViewModel.getLoginStatus().observe(this) {
             val splashTime: Long = 2000
             Handler(Looper.getMainLooper()).postDelayed({
@@ -30,10 +33,14 @@ class SplashScreenActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     val intent = Intent(this, LoginActivity::class.java)
-                    val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, splashScreenBinding.ivSplashscreen, getString(
-                        R.string.all_icon))
+                    val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this, splashScreenBinding.ivSplashscreen, getString(
+                            R.string.all_icon
+                        )
+                    )
                     startActivity(intent, optionsCompat.toBundle())
                 }
+                EspressoIdlingResource.decrement()
                 finish()
             }, splashTime)
         }

@@ -14,9 +14,7 @@ import com.example.storyapps.R
 
 class ImageBannerWidget : AppWidgetProvider() {
     override fun onUpdate(
-        context: Context,
-        appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
+        context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray
     ) {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
@@ -38,26 +36,30 @@ class ImageBannerWidget : AppWidgetProvider() {
         const val EXTRA_ITEM = "EXTRA_ITEM"
 
         @SuppressLint("RemoteViewLayout")
-        private fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
+        private fun updateAppWidget(
+            context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int
+        ) {
             val intent = Intent(context, StackWidgetService::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             intent.data = intent.toUri(Intent.URI_INTENT_SCHEME).toUri()
 
             val views = RemoteViews(context.packageName, R.layout.image_banner_widget)
-            views.setRemoteAdapter(R.id.stack_widget, intent)
-            views.setEmptyView(R.id.stack_widget, R.id.text_widget_empty)
+            views.setRemoteAdapter(R.id.sv_widget, intent)
+            views.setEmptyView(R.id.sv_widget, R.id.tv_widget_empty)
 
             val toastIntent = Intent(context, ImageBannerWidget::class.java)
             toastIntent.action = TOAST_ACTION
             toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
 
-            val toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent,
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            val toastPendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                toastIntent,
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
                 else 0
             )
 
-            views.setPendingIntentTemplate(R.id.stack_widget, toastPendingIntent)
+            views.setPendingIntentTemplate(R.id.sv_widget, toastPendingIntent)
 
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }

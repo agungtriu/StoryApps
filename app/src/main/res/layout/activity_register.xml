@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/iv_register"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_all_poster_medium"
+            android:layout_height="@dimen/all_poster_medium"
             android:layout_marginStart="@dimen/margin_all_medium"
             android:layout_marginTop="@dimen/margin_all_xlarge"
             android:layout_marginEnd="@dimen/margin_all_medium"
@@ -26,82 +26,66 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_register_title_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/all_name"
+            android:id="@+id/tv_register_title"
+            style="@style/TextContent.Title"
+            android:text="@string/all_register"
             app:layout_constraintEnd_toEndOf="@id/iv_register"
             app:layout_constraintStart_toStartOf="@id/iv_register"
             app:layout_constraintTop_toBottomOf="@id/iv_register" />
+
+        <TextView
+            android:id="@+id/tv_register_desc"
+            style="@style/TextContent.Desc"
+            android:layout_marginTop="@dimen/margin_all_small"
+            android:text="@string/register_desc"
+            app:layout_constraintEnd_toEndOf="@id/iv_register"
+            app:layout_constraintStart_toStartOf="@id/iv_register"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_title" />
 
         <EditText
             android:id="@+id/ed_register_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_all_small"
+            android:layout_marginTop="@dimen/margin_all_medium"
             android:autofillHints="name"
             android:background="@drawable/bg_edittext_rounded"
-            android:hint="@string/register_example_name"
+            android:hint="@string/register_example_hint"
             android:inputType="textPersonName"
-            android:labelFor="@id/tv_register_title_name"
-            android:padding="@dimen/margin_all_small"
+            android:labelFor="@id/tv_register_title"
+            android:padding="@dimen/margin_all_medium"
             app:layout_constraintEnd_toEndOf="@id/iv_register"
             app:layout_constraintStart_toStartOf="@id/iv_register"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_title_name" />
-
-        <TextView
-            android:id="@+id/tv_register_title_email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_all_medium"
-            android:labelFor="@id/ed_register_email"
-            android:text="@string/all_email"
-            android:transitionName="@string/all_email"
-            app:layout_constraintEnd_toEndOf="@id/iv_register"
-            app:layout_constraintStart_toStartOf="@id/iv_register"
-            app:layout_constraintTop_toBottomOf="@id/ed_register_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_register_desc" />
 
         <com.example.storyapps.ui.customview.EditTextEmail
             android:id="@+id/ed_register_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_all_small"
+            android:layout_marginTop="@dimen/margin_all_medium"
             android:autofillHints="emailAddress"
             android:background="@drawable/bg_edittext_rounded"
-            android:hint="@string/all_email_example"
+            android:hint="@string/all_email_hint"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/margin_all_small"
+            android:padding="@dimen/margin_all_medium"
             android:transitionName="@string/all_email_ed"
             app:layout_constraintEnd_toEndOf="@id/iv_register"
             app:layout_constraintStart_toStartOf="@id/iv_register"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_title_email" />
-
-        <TextView
-            android:id="@+id/tv_register_title_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_all_medium"
-            android:labelFor="@id/ed_register_password"
-            android:text="@string/all_password"
-            android:transitionName="@string/all_password"
-            app:layout_constraintEnd_toEndOf="@id/iv_register"
-            app:layout_constraintStart_toStartOf="@id/iv_register"
-            app:layout_constraintTop_toBottomOf="@id/ed_register_email" />
+            app:layout_constraintTop_toBottomOf="@id/ed_register_name" />
 
         <com.example.storyapps.ui.customview.EditTextPassword
             android:id="@+id/ed_register_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_all_small"
+            android:layout_marginTop="@dimen/margin_all_medium"
             android:autofillHints="password"
             android:background="@drawable/bg_edittext_rounded"
-            android:hint="@string/all_password"
+            android:hint="@string/all_password_hint"
             android:inputType="textPassword"
-            android:padding="@dimen/margin_all_small"
+            android:padding="@dimen/margin_all_medium"
             android:transitionName="@string/all_password_ed"
             app:layout_constraintEnd_toEndOf="@id/iv_register"
             app:layout_constraintStart_toStartOf="@id/iv_register"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_title_password" />
+            app:layout_constraintTop_toBottomOf="@id/ed_register_email" />
 
         <Button
             android:id="@+id/bt_register"

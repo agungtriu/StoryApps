@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Story</string>
     <string name="image_splash_screen">gambar splash screen</string>
-    <string name="all_password">Kata sandi</string>
     <string name="all_image">gambar</string>
     <string name="all_name">Nama</string>
     <string name="add_title">Tambah Cerita</string>
@@ -12,17 +11,16 @@
     <string name="add_gallery">Galeri</string>
     <string name="add_camera">Kamera</string>
     <string name="add_upload">Unggah</string>
-    <string name="add_description">Deskripsi</string>
+    <string name="add_description">Tulis keterangan</string>
     <string name="add_chose_picture">Pilih gambar</string>
-    <string name="add_insert_image">" Masukkan gambar terlebih dahulu."</string>
+    <string name="add_insert_image">Masukkan gambar terlebih dahulu.</string>
     <string name="add_no_permission">Tidak mendapatkan permission.</string>
     <string name="camera_failed_load_image">Gagal mengambil gambar.</string>
     <string name="home_not_found">Data tidak ditemukan</string>
     <string name="camera_failed_camera">Gagal memunculkan kamera.</string>
-    <string name="all_email">Email</string>
-    <string name="all_register">DAFTAR</string>
-    <string name="menu_logout">Keluar</string>
-    <string name="all_login">LOGIN</string>
+    <string name="all_register">Daftar</string>
+    <string name="all_logout">Keluar</string>
+    <string name="all_login">Login</string>
     <string name="edit_text_email_invalid">Email tidak valid</string>
     <string name="edit_text_password_alert">Kata sandi harus 6 karakter</string>
     <string name="all_email_empty">email tidak boleh kosong</string>
@@ -30,9 +28,28 @@
     <string name="all_name_empty">nama tidak boleh kosong</string>
     <string name="add_description_empty">Deskripsi tidak boleh kosong</string>
     <string name="all_no_data">Tidak ada data</string>
-    <string name="all_bookmarked" translatable="false">Ditandai</string>
+    <string name="all_bookmarked">Ditandai</string>
     <string name="setting_title">Pengaturan</string>
     <string name="setting_language">Bahasa</string>
-    <string name="register_example_name">John</string>
-    <string name="all_email_example" translatable="false">your@email.com</string>
+    <string name="register_example_hint">masukkan nama anda</string>
+    <string name="all_email_hint">masukkan alamat email anda</string>
+    <string name="all_maps">Peta</string>
+    <string name="all_location_not_found">" Lokasi tidak ditemukan. Coba lagi"</string>
+    <string name="maps_style_failed">Penguraian gaya gagal.</string>
+    <string name="maps_style_cant_find">Tidak dapat menemukan gaya. Kesalahan:</string>
+    <string name="dialog_choose">Pilih</string>
+    <string name="login_desc">Silakan masukkan detail di bawah ini</string>
+    <string name="all_password_hint">masukkan kata sandi anda</string>
+    <string name="register_desc">Silakan lengkapi detail di bawah ini untuk mendaftar</string>
+    <string name="utils_time_ago">yang lalu</string>
+    <string name="utils_time_seconds">detik</string>
+    <string name="utils_time_hours">jam</string>
+    <string name="utils_time_days">hari</string>
+    <string name="utils_time_minutes">menit</string>
+    <string name="utils_time_second">detik</string>
+    <string name="utils_time_minute">menit</string>
+    <string name="utils_time_hour">jam</string>
+    <string name="utils_time_day">hari</string>
+    <string name="logout_ask">Are you sure want to logout from this account?</string>
+    <string name="logout_cancel">Cancel</string>
 </resources>

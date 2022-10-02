@@ -2,13 +2,11 @@
 <resources>
     <string name="app_name">ストーリー</string>
     <string name="image_splash_screen">画像のスプラッシュ スクリーン</string>
-    <string name="all_password">" パスワード"</string>
     <string name="all_image">画像</string>
     <string name="all_name">名前</string>
-    <string name="all_email">Eメール</string>
     <string name="all_login">ログインする</string>
     <string name="all_register">登録</string>
-    <string name="menu_logout">ログアウト</string>
+    <string name="all_logout">ログアウト</string>
     <string name="add_title">ストーリーを追加</string>
     <string name="camera_capture_image">キャプチャー画像</string>
     <string name="camera_flip_camera">カメラスイッチ</string>
@@ -16,7 +14,7 @@
     <string name="add_gallery">ギャラリー</string>
     <string name="add_camera">カメラ</string>
     <string name="add_upload">アップロード</string>
-    <string name="add_description">説明</string>
+    <string name="add_description">キャプションを書く</string>
     <string name="add_chose_picture">画像を選択</string>
     <string name="add_insert_image">最初に画像を挿入します。</string>
     <string name="add_no_permission">許可を得ていない</string>
@@ -30,9 +28,28 @@
     <string name="all_name_empty">名前を空にすることはできません</string>
     <string name="add_description_empty">説明を空にすることはできません</string>
     <string name="all_no_data">データなし</string>
-    <string name="all_bookmarked" translatable="false">ブックマーク済み</string>
+    <string name="all_bookmarked">ブックマーク済み</string>
     <string name="setting_title">設定</string>
     <string name="setting_language">" 言語"</string>
-    <string name="register_example_name">ジョン</string>
-    <string name="all_email_example" translatable="false">your@email.com</string>
+    <string name="register_example_hint">あなたの名前を入力してください</string>
+    <string name="all_email_hint">メールアドレスを入力</string>
+    <string name="all_maps">マップ</string>
+    <string name="all_location_not_found">場所が見つかりません。再試行する</string>
+    <string name="maps_style_failed">スタイルの解析に失敗しました。</string>
+    <string name="maps_style_cant_find">" スタイルが見つかりません。エラー："</string>
+    <string name="dialog_choose">選ぶ</string>
+    <string name="login_desc">以下に詳細を入力してください</string>
+    <string name="all_password_hint">パスワードを入力してください</string>
+    <string name="register_desc">登録するには、以下の詳細を入力してください</string>
+    <string name="utils_time_ago">前</string>
+    <string name="utils_time_seconds">秒</string>
+    <string name="utils_time_hours">時間</string>
+    <string name="utils_time_days">日</string>
+    <string name="utils_time_minutes">分</string>
+    <string name="utils_time_second">秒</string>
+    <string name="utils_time_minute">分</string>
+    <string name="utils_time_hour">時間</string>
+    <string name="utils_time_day">日</string>
+    <string name="logout_ask">Are you sure want to logout from this account?</string>
+    <string name="logout_cancel">Cancel</string>
 </resources>

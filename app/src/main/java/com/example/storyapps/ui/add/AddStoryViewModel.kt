@@ -11,6 +11,11 @@ import okhttp3.RequestBody
 class AddStoryViewModel(private val storyRepository: StoryRepository) : ViewModel() {
 
     fun addStory(
-        imageFile: MultipartBody.Part, description: RequestBody, token: String
-    ): LiveData<Resource<AddStoryEntity>> = storyRepository.addStory(imageFile, description, token)
+        imageFile: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody,
+        lon: RequestBody,
+        token: String
+    ): LiveData<Resource<AddStoryEntity>> =
+        storyRepository.addStory(imageFile, description, lat, lon, token)
 }
