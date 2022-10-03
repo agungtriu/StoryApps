@@ -43,19 +43,19 @@ class HomeActivity : AppCompatActivity() {
     private fun checkData() {
         storyAdapter.addLoadStateListener {
             with(homeBinding) {
-                if (storyAdapter.itemCount > 0) {
-                    tvHomeEmpty.visibility = View.GONE
-                    rvHome.visibility = View.VISIBLE
-                } else {
+                if (storyAdapter.itemCount == 0) {
                     tvHomeEmpty.visibility = View.VISIBLE
                     rvHome.visibility = View.GONE
+                } else {
+                    tvHomeEmpty.visibility = View.GONE
+                    rvHome.visibility = View.VISIBLE
                 }
             }
         }
     }
 
-    private fun listener(){
-        with(homeBinding){
+    private fun listener() {
+        with(homeBinding) {
             ivHomeMaps.setOnClickListener {
                 val intent = Intent(this@HomeActivity, MapsActivity::class.java)
                 startActivity(intent)
@@ -78,6 +78,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun loadData(token: String) {
         with(homeBinding) {
+            rvHome.adapter =
+                storyAdapter.withLoadStateFooter(footer = LoadingStateAdapter {
+                    storyAdapter.retry()
+                })
+
             pbHome.showLoading(true)
             homeViewModel.loadStory(token).observe(this@HomeActivity) {
                 pbHome.showLoading(false)

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyapps.databinding.ActivityBookmarkedBinding
+import com.example.storyapps.ui.home.LoadingStateAdapter
 import com.example.storyapps.ui.viewmodel.ViewModelFactory
 
 class BookmarkedActivity : AppCompatActivity() {
@@ -36,6 +37,11 @@ class BookmarkedActivity : AppCompatActivity() {
     }
 
     private fun checkData() {
+        bookmarkedBinding.rvBookmarked.adapter =
+            bookmarkedAdapter.withLoadStateFooter(footer = LoadingStateAdapter {
+                bookmarkedAdapter.retry()
+            })
+
         bookmarkedAdapter.addLoadStateListener {
             with(bookmarkedBinding) {
                 if (bookmarkedAdapter.itemCount > 0) {

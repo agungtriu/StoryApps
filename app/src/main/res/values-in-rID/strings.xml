@@ -50,6 +50,8 @@
     <string name="utils_time_minute">menit</string>
     <string name="utils_time_hour">jam</string>
     <string name="utils_time_day">hari</string>
-    <string name="logout_ask">Are you sure want to logout from this account?</string>
-    <string name="logout_cancel">Cancel</string>
+    <string name="logout_ask">" Apakah Anda yakin ingin keluar dari akun ini?"</string>
+    <string name="logout_cancel">Batal</string>
+    <string name="loading_retry">Coba lagi</string>
+    <string name="loading_timeout">Waktu habis</string>
 </resources>

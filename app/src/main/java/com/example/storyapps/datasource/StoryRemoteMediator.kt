@@ -91,7 +91,6 @@ class StoryRemoteMediator(
 
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
-
             MediatorResult.Error(exception)
         }
     }

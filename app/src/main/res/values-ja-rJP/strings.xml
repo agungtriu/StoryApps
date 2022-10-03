@@ -50,6 +50,8 @@
     <string name="utils_time_minute">分</string>
     <string name="utils_time_hour">時間</string>
     <string name="utils_time_day">日</string>
-    <string name="logout_ask">Are you sure want to logout from this account?</string>
-    <string name="logout_cancel">Cancel</string>
+    <string name="logout_ask">このアカウントからログアウトしてもよろしいですか?</string>
+    <string name="logout_cancel">" キャンセル"</string>
+    <string name="loading_retry">リトライ</string>
+    <string name="loading_timeout">タイムアウト</string>
 </resources>
