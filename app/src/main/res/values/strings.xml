@@ -56,4 +56,6 @@
     <string name="utils_time_day">day</string>
     <string name="logout_ask">Are you sure want to logout from this account?</string>
     <string name="logout_cancel">Cancel</string>
+    <string name="loading_retry">Retry</string>
+    <string name="loading_timeout">Timeout</string>
 </resources>
