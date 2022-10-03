@@ -31,8 +31,8 @@ import org.junit.runners.MethodSorters
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class SplashScreenActivityTest {
-    private val name = "endtoendtestingcfvgbh"
-    private val email = "endtoendtestingvgbh@gmail.com"
+    private val name = "endtoendtestinggfchvb"
+    private val email = "endtoendtestingxtcfgvb@gmail.com"
     private val password = "123456"
     private val caption = "end to end testing"
 

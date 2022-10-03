@@ -87,10 +87,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val success =
                 mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
             if (!success) {
-                Toast.makeText(this, getString(R.string.maps_style_failed), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.maps_style_failed), Toast.LENGTH_LONG)
+                    .show()
             }
         } catch (exception: Resources.NotFoundException) {
-            Toast.makeText(this, getString(R.string.maps_style_cant_find).plus(exception), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                getString(R.string.maps_style_cant_find).plus(exception),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
